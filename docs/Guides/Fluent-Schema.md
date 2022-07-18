@@ -2,20 +2,19 @@
 
 ## Fluent Schema
 
-The [Validation and
-Serialization](../Reference/Validation-and-Serialization.md) documentation
-outlines all parameters accepted by Fastify to set up JSON Schema Validation to
-validate the input, and JSON Schema Serialization to optimize the output.
+[유효성 검사 및 직렬화](../Reference/Validation-and-Serialization.md) 문서에는
+입력을 검증하기 위해 JSON 스키마 유효성 검사와 출력을 최적화하기 위해 JSON 스키마 직렬화 설정을 
+Fastify에서 허용하는 모든 매개 변수에 요약되어 있습니다.
 
-[`fluent-json-schema`](https://github.com/fastify/fluent-json-schema) can be
-used to simplify this task while allowing the reuse of constants.
+[`fluent-json-schema`](https://github.com/fastify/fluent-json-schema) 를
+사용하여 상수의 재사용을 허용하면서 이 작업을 단순화할 수 있습니다.
 
-### Basic settings
+### 기본 설정
 
 ```js
 const S = require('fluent-json-schema')
 
-// You can have an object like this, or query a DB to get the values
+// 아래와 같은 개체를 사용하거나 DB를 쿼리하여 값을 가져올 수 있습니다.
 const MY_KEYS = {
   KEY1: 'ONE',
   KEY2: 'TWO'
@@ -53,18 +52,15 @@ const schema = {
 fastify.post('/the/url', { schema }, handler)
 ```
 
-### Reuse
+### 재사용
 
-With `fluent-json-schema` you can manipulate your schemas more easily and
-programmatically and then reuse them thanks to the `addSchema()` method. You can
-refer to the schema in two different manners that are detailed in the
-[Validation and
-Serialization](../Reference/Validation-and-Serialization.md#adding-a-shared-schema)
-documentation.
+`fluent-json-schema`를 사용하면 스키마를 보다 쉽고 프로그래밍적으로 다루고 
+`add Schema()` 방식으로 재사용할 수 있습니다. [유효성 검사 및 직렬화](../Reference/Validation-and-Serialization.md#adding-a-shared-schema) 
+문서에 자세히 설명되어 있는 두 가지 다른 방법으로 스키마를 참조할 수 있습니다.
 
-Here are some usage examples:
+몇 가지 사용 예는 다음과 같습니다:
 
-**`$ref-way`**: refer to an external schema.
+**`$ref-way`**: 외부 스키마를 참조합니다.
 
 ```js
 const addressSchema = S.object()
@@ -92,8 +88,7 @@ fastify.post('/the/url', { schema }, handler)
 ```
 
 
-**`replace-way`**: refer to a shared schema to replace before the validation
-process.
+**`replace-way`**: 유효성 검사 프로세스 전에 대체할 공유 스키마를 참조하십시오.
 
 ```js
 const sharedAddressSchema = {
@@ -122,5 +117,4 @@ const schema = { body: bodyJsonSchema }
 fastify.post('/the/url', { schema }, handler)
 ```
 
-NB You can mix up the `$ref-way` and the `replace-way` when using
-`fastify.addSchema`.
+`fastify.addSchema`를 사용할 때 `$ref-way`와 `replace-way`를 같이 사용할 수 있습니다.
