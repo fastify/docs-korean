@@ -2,9 +2,9 @@
 
 ## Fluent Schema
 
-[유효성 검사 및 직렬화](../Reference/Validation-and-Serialization.md) 문서에는
-입력을 검증하기 위해 JSON 스키마 유효성 검사와 출력을 최적화하기 위해 JSON 스키마 직렬화 설정을 
-Fastify에서 허용하는 모든 매개 변수에 요약되어 있습니다.
+[유효성 검사 및 직렬화](../Reference/Validation-and-Serialization.md) 문서는 
+JSON 스키마 유효성 검사를 설정하기 위해 Fastify에서 허용하는 모든 매개변수를 설명합니다.
+JSON 스키마를 사용해 입력의 유효성을 검사하고 직렬화를 통해 출력을 최적화합니다.
 
 [`fluent-json-schema`](https://github.com/fastify/fluent-json-schema) 를
 사용하여 상수의 재사용을 허용하면서 이 작업을 단순화할 수 있습니다.
@@ -41,7 +41,7 @@ const paramsJsonSchema = S.object()
 const headersJsonSchema = S.object()
   .prop('x-foo', S.string().required())
 
-// Note that there is no need to call `.valueOf()`!
+// `.valueOf()`는 호출할 필요가 없다는 것에 주의하세요!
 const schema = {
   body: bodyJsonSchema,
   querystring: queryStringJsonSchema, // (or) query: queryStringJsonSchema
@@ -55,7 +55,7 @@ fastify.post('/the/url', { schema }, handler)
 ### 재사용
 
 `fluent-json-schema`를 사용하면 스키마를 보다 쉽고 프로그래밍적으로 다루고 
-`add Schema()` 방식으로 재사용할 수 있습니다. [유효성 검사 및 직렬화](../Reference/Validation-and-Serialization.md#adding-a-shared-schema) 
+`add Schema()` 메서드로 재사용할 수 있습니다. [유효성 검사 및 직렬화](../Reference/Validation-and-Serialization.md#adding-a-shared-schema) 
 문서에 자세히 설명되어 있는 두 가지 다른 방법으로 스키마를 참조할 수 있습니다.
 
 몇 가지 사용 예는 다음과 같습니다:
@@ -74,7 +74,7 @@ const addressSchema = S.object()
 const commonSchemas = S.object()
   .id('https://fastify/demo')
   .definition('addressSchema', addressSchema)
-  .definition('otherSchema', otherSchema) // You can add any schemas you need
+  .definition('otherSchema', otherSchema) // 필요한 스키마를 추가할 수 있습니다.
 
 fastify.addSchema(commonSchemas)
 
