@@ -2,14 +2,12 @@
 <a id="contributing"></a>
 
 Fastify에 기여하는 일에 관심을 가져주셔서 감사합니다. 
-여러분의 지식과 지원을 받게 될 것을 기대합니다. 
-이 가이드가 저희를 돕고자하는 여러분들을 도와줄겁니다.
+저희는 여러분의 지식과 지원을 받게 되어 기쁩니다.
+이 가이드는 저희를 돕는 여러분을 지원하기 위한 저희의 노력입니다.
 
 > ## Note
 > 이것은 비공식 가이드입니다.
-> 그래서 공식 가이드의 [기여하기 문서](https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md) 전문을 확인하시길 바랍니다.
-> 그리고 저희의 개발자 full details and our [개발자 원천 증명](https://en.wikipedia.org/wiki/Developer_Certificate_of_Origin) 문서도 
-> 확인 바랍니다.
+> 공식 [기여하기 문서](https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md)의 전문과 [개발자 원천 증명](https://en.wikipedia.org/wiki/Developer_Certificate_of_Origin)을 확인해주시기 바랍니다.
 
 ## 목차
 <a id="contributing-toc"></a>
@@ -25,22 +23,23 @@ Fastify에 기여하는 일에 관심을 가져주셔서 감사합니다.
 <a id="contribution-types"></a>
 
 간단하게 말하자면, 저희는 어떤 형태의 기여 방식이든 기꺼이 환영합니다. 
-기여하는 일에는 길고 짧음이 없습니다. 어떤 방식이든 저희는 기쁘게 받아드립니다:
+기여하는 일에는 길고 짧음이 없습니다. 
+저희는 다음과 같은 기여를 기쁘게 받습니다:
 
 * 문서 개선하기: 작은 오타 수정부터 큰 단위의 문서 재작성까지 가능합니다.
-* pull requests 와 [discussions](https://github.com/fastify/fastify/discussions)에 온 질문에 답변을 달아 다른 분들을 도울 수 있습니다.
-* [흔한 버그](https://github.com/fastify/fastify/issues?q=is%3Aissue+is%3Aopen+label%3Abug)를 수정할 수 있습니다.
-* 기존에 잘 알려지지 않은 버그를 찾아서 이슈에 등록해서 알릴 수 있습니다.
+* 풀 리퀘스트와 [discussions](https://github.com/fastify/fastify/discussions)의 질문에 답변을 달아 다른 분들을 도울 수 있습니다.
+* [알려진 버그](https://github.com/fastify/fastify/issues?q=is%3Aissue+is%3Aopen+label%3Abug)를 수정할 수 있습니다.
+* 기존에 잘 알려지지 않은 버그를 최소한의 재현 방법과 함께 이슈에 등록해서 알릴 수 있습니다.
 
-## 기본 규칙 및 기대 사항
+## 기본 규칙과 기대 사항
 <a id="contributing-rules"></a>
 
 시작하기에 앞서서, 여러분이 숙지하길 바라는 점들을 알려드리겠습니다.
 
-* 프로젝트에서 상대방은 존중하고 배려해주세요. 
+* 프로젝트에서 상대방을 존중하고 배려해주세요. 
   이 프로젝트는 전세계의 누구에게나 열려 있고 다양한 사람들이 참여하고 있습니다.
   각각의 사람마다 프로젝트를 바라보는 자신만의 시각과 견해를 가지고 있을 수 있습니다. 
-  그래서 다른 분들이 생각을 듣고 동의하거나 절충안을 찾아서 함께 문제를 해결해 나가길 바랍니다.
+  다른 분들의 생각을 듣고 동의하거나 절충안을 찾아서 함께 문제를 해결해 나가길 바랍니다.
 * 프로젝트에 참여하시려면 먼저 [작성 원칙](https://github.com/fastify/fastify/blob/main/CODE_OF_CONDUCT.md)을 확인하시고 규칙에 따라 진행하셔야 합니다.
 * pull request를 하시려면, 모든 테스트를 먼저 통과하셔야 합니다.
   만약 테스트를 통과하지 못하셨다면, 그 이유에 대해서 기술해주셔서 저희가 merge할 때 확인할 수 있게 해주실길 바랍니다.
@@ -56,21 +55,21 @@ Fastify에 기여하는 일에 관심을 가져주셔서 감사합니다.
   그래야 작업하기 전에 다른 사람들이 그 이슈에 대해 토론할 수 있습니다.
 
 <!--
-TODO: add link to a style guide, when we have one, here as in
+TODO: 스타일 가이드가 있을 때 다음과 같이 링크를 추가해주세요.
 https://github.com/github/opensource.guide/blob/2868efbf0c14aec821909c19e210c3603a4a7805/CONTRIBUTING.md#style-guide
 -->
 
 ## 환경 설정하기
 <a id="contributing-environment"></a>
 
-문서 작성과 코드를 작성할 때 작성 규칙을 준수해주세요.
-특정 인기 있는 도구들이 코드를 자동으로 수정해주거나 문법을 수정해줄 수 있습니다.
-그러나 이 프로젝트에서 사용하는 스타일과 [StandardJS](https://standardjs.com)의 코드 포멧팅과 일치하지 않는 이상은 사용을 지양해주시길 권장합니다.
+이 프로젝트의 코드 작성과 문서 작성 스타일을 준수해주세요.
+코드와 문서를 자동으로 수정해주는 몇몇 유명한 도구들은 이 프로젝트의 스타일을 따르지 않습니다.
+그러므로 이 프로젝트에서 사용하는 스타일과 [StandardJS](https://standardjs.com)의 코드 포멧팅과 일치하지 않는 이상은 사용을 지양해주시길 권장합니다.
 
 ### Visual Studio Code 사용하기
 <a id="contributing-vscode"></a>
 
-[Visual Studio Code (VSCode) portable](https://code.visualstudio.com/docs/editor/portable)에서 Fastify 개발 환경을 만드는 법을 찾을 수 있습니다.
+다음으로는 [Visual Studio Code (VSCode) portable](https://code.visualstudio.com/docs/editor/portable)에서 Fastify 개발 환경을 만드는 법을 찾을 수 있습니다.
 이 문서는 오직 macOS상에서 개발 환경 설정에 관해 기록되어 있습니다. 하지만 다른 모든 플렛폼에서 환경 설정 원칙은 동일합니다.
 링크로 첨부된 VSCode portable 가이드 문서를 통해서 다른 환경에서 설정하는 법을 확인하세요.
 
@@ -82,7 +81,7 @@ https://github.com/github/opensource.guide/blob/2868efbf0c14aec821909c19e210c360
 ```
 
 VSCode 포터블 가이드에 따르면, 포터블 모드가 올바르게 작동되게 하기 위해서 어플리케이션의 샌드박스를 해제해야 합니다.
-이 문제를 해결하기 위해 터미널상에서 다음의 명령어들을 실행시켜 주세요.
+그러기 위해 터미널상에서 다음의 명령어들을 실행시켜 주세요.
 
 ```sh
 xattr -dr com.apple.quarantine /Applications/VSCodeFastify/Visual\ Studio\ Code.app
@@ -96,7 +95,7 @@ mkdir -p /Applications/VSCodeFastify/code-portable-data/{user-data,extensions}
 
 계속 진행하기에 앞서서, 터미널에서 `code` 사용할 수 있도록 `PATH`를 추가해주세요.
 [수동으로 VSCode `PATH` 넣기](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)를 통해 방법을 확인할 수 있습니다.
-위 문서에서는 다양한 쉘 위에서 어떻게 해야하는지 알려주고 있습니다. 그래서 자신이 선호하는 쉘 가이드를 문서에서 찾아 지시 사항에 따라 진행해주세요.
+위 문서에서 약술한 것처럼 절차는 여러분의 기본 쉘에 따라 다릅니다. 가이드에서 여러분이 선호하는 쉘에 맞는 절차를 따라주셔야 합니다.
 그러나 `code` 도구를 직접 참조하는 대신 별칭을 정의하여 약간 조정할 것입니다. 이것은 현재 사용하고 있을 수 있는 다른 VSCode 설치와 충돌하지 않도록 하기 위한 것이며, 본 가이드를 Fastify에만 적용하기 위한 것입니다.
 결론적으로는 다음의 명령어를 사용하기를 권장드립니다.
 
@@ -113,20 +112,19 @@ alias code-fastify="/Applications/VSCodeFastify/Visual\ Studio\ Code.app/Content
 x64
 ```
 
-이제 VSCode 설치를 완료했습니다. 그리고 커맨드 라인을 통해서도 작업을 진행할 수 있습니다. 
-프로젝트 스타일에 맞게 포멧팅을 해서 자바스크립트로 코드를 작성하려면 익스텐션을 설치해야 합니다.
+이제 작성하는 어떤 JavaScript라도 프로젝트 스타일에 맞도록 포맷팅해주는 확장프로그램을 설치해야 합니다.
 
 ```sh
 code-fastify --install-extension dbaeumer.vscode-eslint
 ```
 
-위 명령어가 성공적으로 실행되었다면, 다음의 명령어를 실행시켰을 때 "found"가 정상적으로 출력됩니다.
+위 명령어가 성공적으로 실행되었다면, 다음 명령어를 실행하면 "found"가 출력될 겁니다.
 
 ```sh
 [ -d /Applications/VSCodeFastify/code-portable-data/extensions/dbaeumer.vscode-eslint-* ] && echo "found"
 ```
 
-이제 로컬 폴더에 있는 Fastify 프로젝트를 VSCode에서 열어봅시다.
+이제 로컬에 클론한 Fastify 프로젝트의 디렉토리에서, VSCode를 열 수 있습니다:
 
 ```sh
 code-fastify .
@@ -136,10 +134,10 @@ code-fastify .
 그렇다고 모든 설정이 끝난 것이 아닙니다! 
 VSCode를 사용하기 전에 해야할 기본 설정이 몇개 남아있습니다.
 
-VSCode에서 `cmd+shift+p` 를 눌러 커맨드 인풋 프롬프트를 열어 주세요.
-`open settings (json)` 타이핑해서 넣어주면 메뉴 필터를 통해서 같은 아이템을 선택할 수 있습니다.
-이 아이템을 선택하면 설정을 수정할 수 있는 문서가 열립니다. 
-다음의 JSON 코드를 문서에 있는 이미 존재하는 모든 코드 위에 덮어 씌어 붙여 넣어주고 저장해 주세요.
+VSCode에서 `cmd+shift+p`를 눌러 명령어 입력 창을 열어 주세요.
+`open settings (json)`을 입력하고 검색된 메뉴 중 일치하는 항목을 선택하세요.
+편집기를 위한 설정 파일을 열어줄 것입니다.
+다음 JSON 코드를 이 문서에 붙여넣고 이미 있는 텍스트를 덮어쓴 다음 저장합니다.
 
 ```json
 {
@@ -157,6 +155,6 @@ VSCode에서 `cmd+shift+p` 를 눌러 커맨드 인풋 프롬프트를 열어 �
 ```
 
 마침내, 메뉴 바를 통해 "터미널 > 새 터미널"을 선택해서 새 터미널을 에디터에 열 수 있습니다.
-
-이것으로 Fastify에 기여하기 위해 VSCode에서 해야하는 모든 설정을 완료했습니다.
+`npm i`를 입력해 Fastify 의존성을 설치합니다.
+이것으로 Fastify에 기여하기 위한 커스텀 VSCode 인스턴스의 설정을 완료했습니다.
 이제 자바스크립트 파일들을 수정하고 저장할 때, 에디터가 자동으로 스타일을 수정해 줄 것입니다.
