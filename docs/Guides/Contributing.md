@@ -41,8 +41,7 @@ Fastify에 기여하는 일에 관심을 가져주셔서 감사합니다.
   각각의 사람마다 프로젝트를 바라보는 자신만의 시각과 견해를 가지고 있을 수 있습니다. 
   다른 분들의 생각을 듣고 동의하거나 절충안을 찾아서 함께 문제를 해결해 나가길 바랍니다.
 * 프로젝트에 참여하시려면 먼저 [작성 원칙](https://github.com/fastify/fastify/blob/main/CODE_OF_CONDUCT.md)을 확인하시고 규칙에 따라 진행하셔야 합니다.
-* pull request를 하시려면, 모든 테스트를 먼저 통과하셔야 합니다.
-  만약 테스트를 통과하지 못하셨다면, 그 이유에 대해서 기술해주셔서 저희가 merge할 때 확인할 수 있게 해주실길 바랍니다.
+* 풀 리퀘스트를 여시려면 모든 기여가 테스트를 통과해야 한다는 점을 확실하게 해주셔야 합니다. 만약 통과하지 못한 테스트가 있다면 저희가 병합하기 전에 이유를 기술해주셔야 합니다.
 
 ## 기여하는 방법
 <a id="contributing-how-to"></a>
@@ -70,8 +69,8 @@ https://github.com/github/opensource.guide/blob/2868efbf0c14aec821909c19e210c360
 <a id="contributing-vscode"></a>
 
 다음으로는 [Visual Studio Code (VSCode) portable](https://code.visualstudio.com/docs/editor/portable)에서 Fastify 개발 환경을 만드는 법을 찾을 수 있습니다.
-이 문서는 오직 macOS상에서 개발 환경 설정에 관해 기록되어 있습니다. 하지만 다른 모든 플렛폼에서 환경 설정 원칙은 동일합니다.
-링크로 첨부된 VSCode portable 가이드 문서를 통해서 다른 환경에서 설정하는 법을 확인하세요.
+이 문서는 macOS 환경을 가정하고 있지만 다른 모든 플랫폼에서도 원리는 동일합니다.
+다른 플랫폼의 경우 링크로 첨부된 VSCode portable 가이드에서 확인해보세요.
 
 먼저, [VSCode](https://code.visualstudio.com/download)를 다운로드하고 `/Applications/VSCodeFastify/` 폴더에 언팩해주세요.
 그러고 나서, 터미널상에서 다음의 명령어를 실행시키고 "found"를 출력해주세요.
@@ -80,7 +79,7 @@ https://github.com/github/opensource.guide/blob/2868efbf0c14aec821909c19e210c360
 [ -d /Applications/VSCodeFastify/Visual\ Studio\ Code.app ] && echo "found"
 ```
 
-VSCode 포터블 가이드에 따르면, 포터블 모드가 올바르게 작동되게 하기 위해서 어플리케이션의 샌드박스를 해제해야 합니다.
+VSCode portable 가이드에 언급된 것처럼 portable 모드가 정상적으로 작동할 수 있도록 애플리케이션 샌드박스를 해제해야 합니다.
 그러기 위해 터미널상에서 다음의 명령어들을 실행시켜 주세요.
 
 ```sh
@@ -93,8 +92,8 @@ xattr -dr com.apple.quarantine /Applications/VSCodeFastify/Visual\ Studio\ Code.
 mkdir -p /Applications/VSCodeFastify/code-portable-data/{user-data,extensions}
 ```
 
-계속 진행하기에 앞서서, 터미널에서 `code` 사용할 수 있도록 `PATH`를 추가해주세요.
-[수동으로 VSCode `PATH` 넣기](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)를 통해 방법을 확인할 수 있습니다.
+계속하기 전, 터미널의 `PATH`에 `code` 명령어를 추가해야 합니다. 
+이렇게 하기 위해 [직접 VSCode를 PATH에 추가](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)할 것입니다.
 위 문서에서 약술한 것처럼 절차는 여러분의 기본 쉘에 따라 다릅니다. 가이드에서 여러분이 선호하는 쉘에 맞는 절차를 따라주셔야 합니다.
 그러나 `code` 도구를 직접 참조하는 대신 별칭을 정의하여 약간 조정할 것입니다. 이것은 현재 사용하고 있을 수 있는 다른 VSCode 설치와 충돌하지 않도록 하기 위한 것이며, 본 가이드를 Fastify에만 적용하기 위한 것입니다.
 결론적으로는 다음의 명령어를 사용하기를 권장드립니다.
