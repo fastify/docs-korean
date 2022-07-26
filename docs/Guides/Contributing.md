@@ -46,7 +46,7 @@ Fastify에 기여하는 일에 관심을 가져주셔서 감사합니다.
 ## 기여하는 방법
 <a id="contributing-how-to"></a>
 
-먼저, [issues](https://github.com/fastify/fastify/issues) 와 [pull requests](https://github.com/fastify/fastify/pulls)를 통해서 다른 분들이 비슷한 문제나 아이디어를 제공하지는 않았는지 확인바랍니다.
+먼저, [이슈](https://github.com/fastify/fastify/issues) 와 [풀 리퀘스트](https://github.com/fastify/fastify/pulls)를 통해서 다른 분들이 비슷한 문제나 아이디어를 제공하지는 않았는지 확인바랍니다.
 
 만약 여러분의 아이디어를 찾지 못했고, 이 가이드의 목적과도 꼭 맞아 떨어진다고 생각하신다면 아래의 방법을 따라해주세요.
 * **사소한 문제일 경우** 예를 들면, 오타 같은 문제를 수정하는 일은 수정 완료 후 pull request를 요청해주세요
