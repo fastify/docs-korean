@@ -21,3 +21,4 @@ https://github.com/seia-soto/fastify-kr 에서 마이그레이션 중
 - [@iolo](https://github.com/iolo)
 - [@seia-soto](https://github.com/seia-soto)
 - [@alstjs1207](https://github.com/alstjs1207)
+- [@westtrain](https://github.com/westtrain)
