@@ -2,25 +2,25 @@
 
 ## 타입스크립트
 
-Fastify 프레임워크는 바닐라 자바스크립트로 작성되어, 타입 정의를 유지하기가 쉽지 않습니다. 그러나, 버전 2부터 운영자와 기여자들은 타입을 개선하기 위해 많은 노력을 기울여 왔습니다.
+Fastify 프레임워크는 바닐라 자바스크립트로 작성되어 타입 정의를 유지하기 쉽지 않습니다. 그러나 버전 2부터 운영자와 기여자는 타입을 개선하기 위해 많은 노력을 기울여 왔습니다.
 
-타입 시스템은 Fastify 버전 3에서 변경되었습니다. 새로운 타입 시스템은 제네릭과 디폴트 값 설정을 지원하고 request body, querystring 등과 같은 스키마 타입을 정의하는 새로운 방법을 도입했습니다! 저희 팀이 프레임워크와 타입의 시너지를 개선하기 위해 작업하면서, 가끔은 API의 일부에 타입이 적용되지 않거나 잘못 타입이 적용될 수 있습니다. 부족한 부분을 채울 수 있도록 **기여**해주시기 바랍니다. 시작하기 전에 [`CONTRIBUTING.md`](https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md) 파일을 읽으면 순조롭게 진행할 수 있을 거예요!
+타입 시스템은 Fastify 버전 3에서 변경되었습니다. 새로운 타입 시스템은 제네릭과 디폴트값 설정을 지원하고 요청 바디, 쿼리스트링 등과 같은 스키마 타입을 정의하는 새로운 방법을 도입했습니다! 저희 팀이 프레임워크와 타입의 시너지를 개선하기 위해 작업하면서, 가끔은 API의 일부에 타입이 적용되지 않거나 잘못 타입이 적용될 수 있습니다. 부족한 부분을 채울 수 있도록 **기여**해주시기 바랍니다. 시작하기 전에 [`CONTRIBUTING.md`](https://github.com/fastify/fastify/blob/main/CONTRIBUTING.md) 파일을 읽으면 순조롭게 진행할 수 있을 겁니다!
 
 > 이 섹션의 문서는 Fastify 버전 3.x의 타입을 다룹니다.
 
-> 플러그인은 타입을 포함하거나 포함하지 않을 수 있습니다. 자세한 내용은 [Plugins](#plugins)을 참고하세요. 타이핑 지원을 개선하기 위해 PR을 보내주시면 좋겠습니다.
+> 플러그인은 타입을 포함하거나 포함하지 않을 수 있습니다. 자세한 내용은 [Plugins](#plugins)을 참고하세요. 타입 지원을 개선하기 위해 PR을 보내주시면 좋겠습니다.
 
 🚨 `@types/node`를 설치하는 것을 잊지 마세요.
 
 ## 예제로 배우기
 
-Fastify 타입 시스템을 배우는 가장 좋은 방법은 예제입니다! 아래 네 가지 예제는 가장 일반적인 Fastify의 개발 사례를 다루고 있어요. 그 다음엔 타입 시스템에 대한 더 자세한 문서가 나옵니다.
+Fastify 타입 시스템을 배우는 가장 좋은 방법은 예제입니다! 아래 네 가지 예제는 가장 일반적인 Fastify의 개발 사례를 다루고 있습니다. 그 다음엔 타입 시스템에 대한 더 자세한 문서가 나옵니다.
 
 ### 시작하기
 
 이 예제는 Fastify와 Typescript를 시작하고 실행할 수 있도록 합니다. 그 결과 빈 http Fastify 서버가 생성됩니다.
 
-1. 새 npm 프로젝트를 만들고, Fastify를 설치하고, typescript와 @types/node를 peer 의존성으로 설치합니다.
+1. 새 npm 프로젝트를 만들고, Fastify를 설치하고, typescript와 @types/node를 피어 의존성으로 설치합니다.
 
 ```bash
 npm init -y
@@ -47,7 +47,9 @@ npx tsc --init
 
 또는 [권장되는 것](https://github.com/tsconfig/bases#node-14-tsconfigjson) 중 하나를 사용하세요.
 
-_참고: [FastifyDeprecation](https://github.com/fastify/fastify/issues/3284) 경고를 방지하려면, `tsconfig.json`의 `target`속성 을 `es2017` 또는 그 이상으로 설정하세요._
+_주의: [FastifyDeprecation](https://github.com/fastify/fastify/issues/3284) 경고를 방지하려면, `tsconfig.json`의 `target`속성 을 `es2017` 또는 그 이상으로 설정하세요._
+
+주의 2: tsconfig.json에 `"moduleResolution": "NodeNext"`를 package.json의 `"type": "module"`과 함께 사용하지 마세요. 현재 fastify 타입 시스템은 이 조합을 지원하지 않습니다. ts([2349](https://github.com/fastify/fastify/issues/4241)) 경고.
 
 4. `index.ts` 파일을 만듭니다. - 여기에는 서버 코드를 포함합니다.
 5. 아래 코드 블록을 파일에 추가합니다:
@@ -73,9 +75,9 @@ _참고: [FastifyDeprecation](https://github.com/fastify/fastify/issues/3284) �
 6. `npm run build`를 실행합니다. - 이는 `index.ts`를 컴파일하여 Node.js에서 실행되는 `index.js`로 만듭니다. 만약 에러를 만나게 된다면 [fastify/help](https://github.com/fastify/help/)에 이슈를 생성해주세요.
 7. `npm run start`로 Fastify 서버를 실행합니다.
 8. 콘솔에서 `Server listening at http://127.0.0.1:8080`를 볼 겁니다.
-9. `curl localhost:8080/ping`로 서버를 실행하면, `pong`🏓이 리턴될 거예요.
+9. `curl localhost:8080/ping`로 서버를 실행하면, `pong`🏓이 리턴될 겁니다.
 
-🎉 이제 Typescript Fastify 서버가 작동합니다! 이 예제는 3.x버전 타입 시스템의 간결함을 보여줍니다. 디폴트로, 타입 시스템은 당신이 `http` 서버를 사용한다고 가정합니다. 이후의 예제에서는 `https`나 `http2`, 스키마를 라우팅하는 방법 등 더 복잡한 서버를 만드는 방법을 보여줄 겁니다.
+🎉 이제 Typescript Fastify 서버가 작동합니다! 이 예제는 3.x버전 타입 시스템의 간결함을 보여줍니다. 디폴트로, 타입 시스템은 여러분이 `http` 서버를 사용한다고 가정합니다. 이후의 예제에서는 `https`나 `http2`, 스키마를 라우팅하는 방법 등 더 복잡한 서버를 만드는 방법을 보여줄 겁니다.
 
 > Typescript로 Fastify를 시작하는 방법(예: HTTP2 사용)은 더 자세한 API 섹션인 [이곳][fastify]을 참고하세요.
 
@@ -216,25 +218,9 @@ fastify 경로에서 특정 페이로드의 유효성 검사를 하려면 다음
    );
    ```
 
-   **참고** Ajv 버전 7 이상은 `ajvTypeBoxPlugin`를 사용해야 합니다:
-
-   ```typescript
-   import Fastify from "fastify";
-   import {
-     ajvTypeBoxPlugin,
-     TypeBoxTypeProvider,
-   } from "@fastify/type-provider-typebox";
-
-   const fastify = Fastify({
-     ajv: {
-       plugins: [ajvTypeBoxPlugin],
-     },
-   }).withTypeProvider<TypeBoxTypeProvider>();
-   ```
-
 #### JSON 파일의 스키마
 
-마지막 예에서는 인터페이스를 사용하여 request의 쿼리 스트링과 헤더의 타입을 정의했습니다.
+마지막 예에서는 인터페이스를 사용하여 요청의 쿼리 스트링과 헤더의 타입을 정의했습니다.
 많은 사용자는 이미 JSON 스키마를 사용해 이러한 속성을 정의하고 있을 겁니다. 다행히도 기존 JSON 스키마를 TypeScript 인터페이스로 변환하는 방법이 있습니다!
 
 1. '시작하기' 예제를 완료하지 않았다면, 돌아가 1-4 단계를 먼저 따르세요.
@@ -462,9 +448,6 @@ Fastify의 가장 눈에 띄는 기능 중 하나는 광범위한 플러그인 �
 
    // 선언 병합을 활용하여 플러그인 속성을 적합한 fastify 인터페이스에 추가합니다.
    // 플러그인 타입이 여기에 정의된다면, decorate(request, reply)를 호출할 때 값이 타입 체킹됩니다.
-   //TODO:
-   //using declaration merging, add your plugin props to the appropriate fastify interfaces
-   // if prop type is defined here, the value will be typechecked when you call decorate{,Request,Reply}
    declare module "fastify" {
      interface FastifyRequest {
        myPluginProp: string;
@@ -508,12 +491,7 @@ Fastify의 가장 눈에 띄는 기능 중 하나는 광범위한 플러그인 �
 
 6. 플러그인 코드를 컴파일하고 JavaScript 소스 파일과 타입 정의 파일을 모두 생성하려면 `npm run build`를 실행합니다.
 7. 이제 플러그인이 완료되면 [npm에 게시]하거나 로컬에서 사용할 수 있습니다.
-   > 플러그인을 사용하기 위해 npm에 게시할 필요는 없습니다. 이를 Fastify 프로젝트에 포함하고 다른 코드와 마찬가지로 참조할 수 있습니다! TypeScript 사용자로서, TypeScript 인터프리터가 처리할 수 있도록 프로젝트 컴파일에 포함될 위치에 선언 재정의가 있는지 확인하세요.
-   > You do not _need_ to publish your plugin to npm to use it. You can include
-   > it in a Fastify project and reference it as you would any piece of code! As
-   > a TypeScript user, make sure the declaration override exists somewhere that
-   > will be included in your project compilation so the TypeScript interpreter
-   > can process it.
+   > 플러그인을 사용하기 위해 npm에 게시할 _필요는_ 없습니다. 이를 Fastify 프로젝트에 포함하고 다른 코드와 마찬가지로 참조할 수 있습니다! TypeScript 사용자로서, TypeScript 인터프리터가 처리할 수 있도록 프로젝트 컴파일에 포함될 위치에 선언 오버라이딩이 있는지 확인하세요.
 
 #### Fastify 플러그인에 대한 타입 정의 생성
 
@@ -535,7 +513,7 @@ Fastify의 가장 눈에 띄는 기능 중 하나는 광범위한 플러그인 �
 4. `index.js`를 열고 다음 코드를 추가합니다.
 
    ```javascript
-   //플러그인을 작성하기 위해 fastify-plugin이 강력하게 권장됩니다.
+   //플러그인을 작성하기 위해 fastify-plugin을 강력하게 권장합니다.
    const fp = require("fastify-plugin");
 
    function myPlugin(instance, options, done) {
@@ -580,7 +558,6 @@ Fastify의 가장 눈에 띄는 기능 중 하나는 광범위한 플러그인 �
    export const myPlugin: FastifyPlugin<PluginOptions>;
 
    // fastify 플러그인은 자동으로 `.default` 속성을 exported 플러그인에 추가합니다. 아래 주의 사항을 확인하세요.
-   // TODO: 참고 -> 주의로?
    export default myPlugin;
    ```
 
@@ -594,7 +571,7 @@ Fastify 플러그인 시스템을 통해 개발자는 Fastify 인스턴스와 re
 
 TypeScript에서 Fastify 플러그인을 사용하는 것은 JavaScript에서 플러그인을 사용하는 것만큼 쉽습니다. `import/from`으로 플러그인을 가져오면 모든 설정이 완료됩니다. 단, 한 가지 예외가 있습니다.
 
-Fastify 플러그인은 선언 병합을 사용하여 기존 Fastify 타입 인터페이스를 수정합니다(자세한 내용은 앞의 두 예제를 확인하세요). 선언 병합은 그다지 __스마트__하지 않습니다. 즉, 플러그인에 대한 타입 정의가 TypeScript 인터프리터의 범위 내에 있는 경우 플러그인 사용 여부에 **관계없이** 플러그인 타입이 포함됩니다. 이것은 TypeScript 사용의 불운한 제약이며 지금으로서는 피할 수 없습니다.
+Fastify 플러그인은 선언 병합을 사용하여 기존 Fastify 타입 인터페이스를 수정합니다(자세한 내용은 앞의 두 예제를 확인하세요). 선언 병합은 그다지 _스마트하지_ 않습니다. 즉, 플러그인에 대한 타입 정의가 TypeScript 인터프리터의 범위 내에 있는 경우 플러그인 사용 여부에 **관계없이** 플러그인 타입이 포함됩니다. 이것은 TypeScript 사용의 불운한 제약이며 지금으로서는 피할 수 없습니다.
 
 하지만, 이 경험을 개선하는 데 도움이 되는 몇 가지 제안 사항이 있습니다.
 
@@ -707,8 +684,7 @@ Fastify API는 `fastify()`메서드로 구동됩니다. 자바스크립트에서
 
 3. `const fastify = require('fastify')`
 
-   - 이 구문은 유효하며 예상대로 fastify를 가져올 것입니다. 하지만, 타입은 확인되지 **않습니다**.This syntax is valid and will import fastify as expected; however, types
-     will **not** be resolved
+   - 이 구문은 유효하며 예상대로 fastify를 가져올 것입니다. 하지만, 타입은 확인되지 **않습니다**.
    - 예시:
 
      ```typescript
@@ -757,7 +733,7 @@ Fastify API는 `fastify()`메서드로 구동됩니다. 자바스크립트에서
 
 제약 조건: `http.IncomingMessage`, `http2.Http2ServerRequest`
 
-시행Enforced by: [`RawServer`][rawservergeneric]
+시행 주체: [`RawServer`][rawservergeneric]
 
 ##### RawReply
 
@@ -767,7 +743,7 @@ Fastify API는 `fastify()`메서드로 구동됩니다. 자바스크립트에서
 
 제약 조건: `http.ServerResponse`, `http2.Http2ServerResponse`
 
-시행: [`RawServer`][rawservergeneric]
+시행 주체: [`RawServer`][rawservergeneric]
 
 ##### 로거
 
@@ -775,11 +751,11 @@ Fastify 로깅 유틸리티
 
 기본값: [`FastifyLoggerOptions`][fastifyloggeroptions]
 
-시행: [`RawServer`][rawservergeneric]
+시행 주체: [`RawServer`][rawservergeneric]
 
 ##### RawBody
 
-content-type-parser 메서드에 대한 제네릭 파라미터입니다.
+content-type-parser 메서드에 대한 제네릭 파라미터
 
 제약 조건: `string | Buffer`
 
@@ -791,15 +767,7 @@ content-type-parser 메서드에 대한 제네릭 파라미터입니다.
 
 [src](https://github.com/fastify/fastify/blob/main/fastify.d.ts#L19)
 
-기본 Fastify API 메서드입니다. 기본으로 HTTP 서버를 생성합니다. 특정 유니온과 오버로드 메서드를 활용해 타입 시스템은 자동으로 어떤 타입의 서버(http, https, 또는 http2)가 순수하게 메서드에 기반한 옵션으로 만들어졌는지 추론합니다(더 많은 정보는 아래 예제를 확인하세요). 또한 사용자가 Node.js 서버, 요청, 응답 객체를 확장할 수 있도록 광범위한 제네릭 타입 시스템을 지원합니다. 추가로, `Logger` 제네릭은 커스텀 로그 타입을 위해 존재합니다. 자세한 내용은 아래의 예와 제네릭 명세를 참조하세요.
-The main Fastify API method. By default creates an HTTP server. Utilizing
-discriminant unions and overload methods, the type system will automatically
-infer which type of server (http, https, or http2) is being created purely based
-on the options based to the method (see the examples below for more
-information). It also supports an extensive generic type system to allow the
-user to extend the underlying Node.js Server, Request, and Reply objects.
-Additionally, the `Logger` generic exists for custom log types. See the examples
-and generic breakdown below for more information.
+기본 Fastify API 메서드입니다. 기본적으로 HTTP 서버를 생성합니다. 타입 시스템이 판별(discriminant) 유니온과 오버로딩 메서드를 활용해, 순전히 메서드의 옵션을 기반으로, 어떤 서버 타입(http, https, 또는 http2)이 생성되는지 자동으로 추론합니다.(더 많은 정보는 아래 예제를 확인하세요). 또한 사용자가 Node.js 서버, 요청, 응답 객체를 확장할 수 있도록 광범위한 제네릭 타입 시스템을 지원합니다. 추가로, `Logger` 제네릭은 커스텀 로그 타입을 위해 존재합니다. 자세한 내용은 아래의 예와 제네릭 명세를 참조하세요.
 
 ###### 예 1: 표준 HTTP 서버
 
@@ -815,7 +783,7 @@ const server = fastify();
 
 ###### 예 2: HTTPS 서버
 
-1. `@types/node`와 `fastify`에서 다음 가져오기를 생성합니다.
+1. `@types/node`와 `fastify`에서 다음 import를 생성합니다.
    ```typescript
    import fs from "fs";
    import path from "path";
@@ -954,7 +922,7 @@ Fastify 서버 객체를 나타내는 인터페이스입니다. 이는 [`fastify
 
 [src](https://github.com/fastify/fastify/blob/main/types/request.d.ts#L15)
 
-이 인터페이스에는 Fastify 요청 객체의 속성이 포함되어 있습니다. 여기에 추가된 속성은 제공된 요청 객체의 종류(http vs http2)나 라우트 레벨을 무시합니다. 따라서 `request.body`를 GET 요청에서 호출해도 에러가 발생하지 않습니다. (하지만 GET 요청에 바디를 포함한다면 행운을 빌겠습니다😉)
+이 인터페이스에는 Fastify 요청 객체의 속성이 포함되어 있습니다. 여기에 추가된 속성은 제공된 요청 객체의 종류(http vs http2)나 라우트 레벨을 무시합니다. 따라서 `request.body`를 GET 요청에서 호출해도 에러가 발생하지 않습니다. (하지만 GET 요청에 바디를 포함한다면, 행운을 빌겠습니다😉)
 
 `FastifyRequest`객체에 커스텀 속성을 추가해야 하는 경우(예를 들면 [`decorateRequest`][decoraterequest] 메서드를 사용할 때) 이 인터페이스에서 선언 병합을 사용해야 합니다.
 
@@ -1142,7 +1110,7 @@ Fastify용 플러그인을 생성할 때 `fastify-plugin` 모듈을 사용하는
 
 [src](https://github.com/fastify/fastify/blob/main/types/register.d.ts#L9)
 
-이 유형 인터페이스는 [`fastify.register()`](./Server.md#register) 메서드의 타입을 지정합니다. 타입 인터페이스는 기본 제네릭 `Options`가 있는 함수 시그니처를 반환하며 기본값은 [FastifyPluginOptions][fastifypluginoptions]입니다. 그 함수를 호출할 때 FastifyPlugin 매개변수에서 이 제네릭을 유추하므로 기본 제네릭을 지정할 필요가 없습니다. options 매개변수는 플러그인의 옵션과 두 개의 추가 선택적 속성인 `prefix: string`과 `logLevel`: [LogLevel][loglevel]의 교차점입니다.
+이 타입 인터페이스는 [`fastify.register()`](./Server.md#register) 메서드의 타입을 지정합니다. 타입 인터페이스는 기본 제네릭 `Options`가 있는 함수 시그니처를 반환하며 기본값은 [FastifyPluginOptions][fastifypluginoptions]입니다. 그 함수를 호출할 때 FastifyPlugin 매개변수에서 이 제네릭을 유추하므로 기본 제네릭을 지정할 필요가 없습니다. options 매개변수는 플러그인의 옵션과 두 개의 추가 선택적 속성인 `prefix: string`과 `logLevel`: [LogLevel][loglevel]의 교차점입니다.
 
 다음은 작동 중인 옵션 추론의 예입니다.
 
@@ -1379,13 +1347,13 @@ onResponse 훅은 응답이 전송되었을 때 실행되므로 클라이언트�
 
 이 훅은 플러그인 컨텍스트가 언제 형성되는지 알아야 하는 플러그인을 개발하거나, 그 특정 컨텍스트에서만 작동하려고 할 때 유용할 수 있습니다.
 
-참고: 플러그인이 fastify-plugin 내부에 래핑된 경우 이 훅이 호출되지 않습니다.
+주의: 플러그인이 fastify-plugin 내부에 래핑된 경우 이 훅이 호출되지 않습니다.
 
 ##### fastify.onCloseHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [Logger][loggergeneric]>(instance: [FastifyInstance][fastifyinstance], done: (err?: [FastifyError][fastifyerror]) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L206)
 
-fastify.close()가 서버를 중지하기 위해 호출될 때 트리거됩니다. 예를 들어 데이터베이스에 대한 연결을 닫기 위해 플러그인에 "종료" 이벤트가 필요할 때 유용합니다.
+`fastify.close()`가 서버를 중지하기 위해 호출될 때 트리거됩니다. 예를 들어 데이터베이스에 대한 연결을 닫기 위해 플러그인에 "종료" 이벤트가 필요할 때 유용합니다.
 
 <!-- Links -->
 
