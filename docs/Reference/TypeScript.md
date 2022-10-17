@@ -854,7 +854,7 @@ interface customRequest extends http.IncomingMessage {
 const server = fastify<http.Server, customRequest>();
 
 server.get("/", async (request, reply) => {
-  const someValue = request.raw.mySpecialProp; // TS knows this is a string, because of the `customRequest` interface
+  const someValue = request.raw.mySpecialProp; // `customeRequest` 인터페이스 덕분에 TS는 이것이 문자열임을 압니다. 
   return someValue.toUpperCase();
 });
 ```
@@ -920,7 +920,7 @@ Fastify 서버의 인스턴스화에 사용되는 속성의 인터페이스입�
 
 Fastify 서버 객체를 나타내는 인터페이스입니다. 이는 [`fastify()`][fastify] 메서드에서 반환된 서버 인스턴스입니다. 인터페이스 타입이므로 코드에서 `decorate` 메서드를 사용하면 [선언 병합](https://www.typescriptlang.org/docs/handbook/declaration-merging.html)을 통해 확장할 수 있습니다.
 
-제네릭 캐스케이딩을 통해 인스턴스에 연결된 모든 메서드는 인스턴스화된 제네릭 속성을 상속합니다. 이는 서버, 요청 또는 응답 타입을 지정함으로써 모든 메서드가 해당 객체를 입력하는 방법을 알게 된다는 것을 의미합니다.
+제네릭 캐스캐이딩을 통해 인스턴스에 연결된 모든 메서드는 인스턴스화된 제네릭 속성을 상속합니다. 이는 서버, 요청 또는 응답 타입을 지정함으로써 모든 메서드가 해당 객체를 입력하는 방법을 알게 된다는 것을 의미합니다.
 
 더 자세한 가이드는 메인 [Learn by Example](#learn-by-example) 섹션을, 이 인터페이스에 대한 추가적인 세부 정보는 보다 단순한 [fastify][fastify] 메서드 예제를 확인하세요.
 
@@ -990,7 +990,7 @@ interface requestGeneric extends RequestGenericInterface {
 }
 
 server.get<requestGeneric>("/", async (request, reply) => {
-  const { name } = request.query; // the name prop now exists on the query prop
+  const { name } = request.query; // 이제 query 속성에 name 속성이 존재합니다.
   return name.toUpperCase();
 });
 ```
@@ -1224,7 +1224,7 @@ RouteShorthandOptions를 확장하고 다음 세 가지 필수 속성을 추가�
 
 ---
 
-#### Parser
+#### 파서
 
 ##### RawBody
 
@@ -1256,7 +1256,7 @@ RouteShorthandOptions를 확장하고 다음 세 가지 필수 속성을 추가�
 
 ---
 
-#### Errors
+#### 에러
 
 ##### fastify.FastifyError
 
@@ -1275,7 +1275,7 @@ Node.js의 `Error` 타입을 확장하며, 두 개의 선택적인 속성인 `st
 
 ---
 
-#### Hooks
+#### 훅
 
 ##### fastify.onRequestHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], done: (err?: [FastifyError][fastifyerror]) => void): Promise\<unknown\> | void
 
