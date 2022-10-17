@@ -49,10 +49,8 @@ npx tsc --init
 
 _주의: [FastifyDeprecation](https://github.com/fastify/fastify/issues/3284) 경고를 방지하려면, `tsconfig.json`의 `target`속성 을 `es2017` 또는 그 이상으로 설정하세요._
 
-주의 2: tsconfig.json에 `"moduleResolution": "NodeNext"`를 package.json의 `"type": "module"`과 함께 사용하지 마세요. 현재 fastify 타입 시스템은 이 조합을 지원하지 않습니다. ts([2349](https://github.com/fastify/fastify/issues/4241)) 경고.
-
 4. `index.ts` 파일을 만듭니다. - 여기에는 서버 코드를 포함합니다.
-5. 아래 코드 블록을 파일에 추가합니다:
+5. 아래 코드 블록을 파일에 추가합니다
 
    ```typescript
    import fastify from "fastify";
@@ -86,7 +84,7 @@ _주의: [FastifyDeprecation](https://github.com/fastify/fastify/issues/3284) �
 타입 시스템은 가장 정확한 개발 경험을 제공하기 위해 제네릭 속성에 깊이 의존합니다. 일부 사용자는 오버헤드가 다소 번거롭다고 생각할 수 있지만, 그만한 가치가 있습니다! 이 예제는 스키마 라우팅과 라우트 레벨의 `request` 객체에 위치한 동적인 속성에 제네릭을 적용하는 법을 다룹니다.
 
 1. 앞의 예제를 완료하지 않았다면, 1-4 단계를 수행하여 설정합니다.
-2. `index.ts`에, 두 인터페이스 `IQuerystring`과 `IHeaders` 정의합니다:
+2. `index.ts`에, 두 인터페이스 `IQuerystring`과 `IHeaders` 정의합니다
 
    ```typescript
    interface IQuerystring {
@@ -115,12 +113,12 @@ _주의: [FastifyDeprecation](https://github.com/fastify/fastify/issues/3284) �
    ```
 
 4. `npm run build`와 `npm run start`를 사용하여 서버 코드를 빌드하고 실행합니다.
-5. API 쿼리
+5. API를 쿼리합니다.
    ```bash
    curl localhost:8080/auth?username=admin&password=Password123!
    ```
    `logged in!`이 리턴되어야 합니다!
-6. 더 있습니다! 제네릭 인터페이스는 라우트 레벨의 훅 메서드에서도 사용 가능합니다. `preValidation` 훅을 추가해 이전 경로를 수정합니다:
+6. 더 있습니다! 제네릭 인터페이스는 라우트 레벨의 훅 메서드에서도 사용 가능합니다. `preValidation` 훅을 추가해 이전 경로를 수정합니다
 
    ```typescript
    server.get<{
@@ -156,7 +154,7 @@ _주의: [FastifyDeprecation](https://github.com/fastify/fastify/issues/3284) �
 
 #### Fastify 타입 공급자(Type Providers)
 
-Fastify는 `json-schema-to-ts`와 `typebox`를 감싸는 두 패키지를 제공합니다:
+Fastify는 `json-schema-to-ts`와 `typebox`를 감싸는 두 패키지를 제공합니다.
 
 - `@fastify/type-provider-json-schema-to-ts`
 - `@fastify/type-provider-typebox`
@@ -170,7 +168,7 @@ Providers](./Type-Providers.md)페이지에 더 많은 내용이 있습니다.
 
 [typebox](https://www.npmjs.com/package/@sinclair/typebox)와 [fastify-type-provider-typebox](https://github.com/fastify/fastify-type-provider-typebox)는 타입과 스키마를 한 번에 빌드하는 유용한 라이브러리입니다. typebox를 사용하면 코드 내에서 스키마를 정의하고, 필요에 따라 타입 또는 스키마로 바로 사용할 수 있습니다.
 
-fastify 경로에서 특정 페이로드의 유효성 검사를 하려면 다음과 같이 할 수 있습니다:
+fastify 경로에서 특정 페이로드의 유효성 검사를 하려면 다음과 같이 할 수 있습니다.
 
 1. 프로젝트에 `typebox`와 `fastify-type-provider-typebox`를 설치합니다.
 
@@ -218,6 +216,18 @@ fastify 경로에서 특정 페이로드의 유효성 검사를 하려면 다음
    );
    ```
 
+   **주의** Ajv 버전 7 또는 그 이상은 `ajvTypeBoxPlugin`를 사용해야 합니다.
+
+   ```typescript
+    import Fastify from 'fastify'
+    import { ajvTypeBoxPlugin, TypeBoxTypeProvider } from '@fastify/type-provider-typebox'
+    const fastify = Fastify({
+      ajv: {
+        plugins: [ajvTypeBoxPlugin]
+      }
+    }).withTypeProvider<TypeBoxTypeProvider>()
+    ```
+
 #### JSON 파일의 스키마
 
 마지막 예에서는 인터페이스를 사용하여 요청의 쿼리 스트링과 헤더의 타입을 정의했습니다.
@@ -230,7 +240,7 @@ fastify 경로에서 특정 페이로드의 유효성 검사를 하려면 다음
    npm i -D json-schema-to-typescript
    ```
 
-3. `schemas`라는 새로운 폴더를 만들고, `headers.json`과 `querystring.json`파일을 추가합니다. 다음 스키마 정의를 복사하여 해당 파일에 붙여넣습니다:
+3. `schemas`라는 새로운 폴더를 만들고, `headers.json`과 `querystring.json`파일을 추가합니다. 다음 스키마 정의를 복사하여 해당 파일에 붙여넣습니다.
 
    ```json
    {
@@ -257,7 +267,7 @@ fastify 경로에서 특정 페이로드의 유효성 검사를 하려면 다음
    }
    ```
 
-4. `compile-schemas` 스크립트를 package.json에 추가합니다:
+4. `compile-schemas` 스크립트를 package.json에 추가합니다.
 
 ```json
 {
@@ -270,7 +280,7 @@ fastify 경로에서 특정 페이로드의 유효성 검사를 하려면 다음
 `json2ts`는 `json-schema-to-typescript`에 포함된 CLI 유틸리티입니다. `schemas`는 입력 경로, `types`는 출력 경로입니다.
 
 5. `npm run compile-schemas`를 실행합니다. 두 새로운 파일은 `types` 디렉토리에 생성되어야 합니다.
-6. `index.ts`에 다음의 코드를 업데이트합니다:
+6. `index.ts`에 다음의 코드를 업데이트합니다.
 
 ```typescript
 import fastify from "fastify";
@@ -733,7 +743,7 @@ Fastify API는 `fastify()`메서드로 구동됩니다. 자바스크립트에서
 
 제약 조건: `http.IncomingMessage`, `http2.Http2ServerRequest`
 
-시행 주체: [`RawServer`][rawservergeneric]
+적용 주체: [`RawServer`][rawservergeneric]
 
 ##### RawReply
 
@@ -743,7 +753,7 @@ Fastify API는 `fastify()`메서드로 구동됩니다. 자바스크립트에서
 
 제약 조건: `http.ServerResponse`, `http2.Http2ServerResponse`
 
-시행 주체: [`RawServer`][rawservergeneric]
+적용 주체: [`RawServer`][rawservergeneric]
 
 ##### 로거
 
@@ -751,7 +761,7 @@ Fastify 로깅 유틸리티
 
 기본값: [`FastifyLoggerOptions`][fastifyloggeroptions]
 
-시행 주체: [`RawServer`][rawservergeneric]
+적용 주체: [`RawServer`][rawservergeneric]
 
 ##### RawBody
 
