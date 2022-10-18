@@ -732,36 +732,36 @@ Fastify API는 `fastify()`메서드로 구동됩니다. 자바스크립트에서
 제약 조건: `http.Server`, `https.Server`, `http2.Http2Server`,
 `http2.Http2SecureServer`
 
-제네릭 파라미터 적용: [`RawRequest`][rawrequestgeneric],
-[`RawReply`][rawreplygeneric]
+제네릭 파라미터 적용: [`RawRequest`][RawRequestGeneric],
+[`RawReply`][RawReplyGeneric]
 
 ##### RawRequest
 
 기본 Node.js 요청 타입
 
-기본값: [`RawRequestDefaultExpression`][rawrequestdefaultexpression]
+기본값: [`RawRequestDefaultExpression`][RawRequestDefaultExpression]
 
 제약 조건: `http.IncomingMessage`, `http2.Http2ServerRequest`
 
-적용 주체: [`RawServer`][rawservergeneric]
+적용 주체: [`RawServer`][RawServerGeneric]
 
 ##### RawReply
 
 기본 Node.js 응답 타입
 
-기본값: [`RawReplyDefaultExpression`][rawreplydefaultexpression]
+기본값: [`RawReplyDefaultExpression`][RawReplyDefaultExpression]
 
 제약 조건: `http.ServerResponse`, `http2.Http2ServerResponse`
 
-적용 주체: [`RawServer`][rawservergeneric]
+적용 주체: [`RawServer`][RawServerGeneric]
 
 ##### 로거
 
 Fastify 로깅 유틸리티
 
-기본값: [`FastifyLoggerOptions`][fastifyloggeroptions]
+기본값: [`FastifyLoggerOptions`][FastifyLoggerOptions]
 
-적용 주체: [`RawServer`][rawservergeneric]
+적용 주체: [`RawServer`][RawServerGeneric]
 
 ##### RawBody
 
@@ -773,7 +773,7 @@ content-type-parser 메서드에 대한 제네릭 파라미터
 
 #### Fastify
 
-##### fastify<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [Logger][loggergeneric]>(opts?: [FastifyServerOptions][fastifyserveroptions]): [FastifyInstance][fastifyinstance]
+##### fastify<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [Logger][LoggerGeneric]>(opts?: [FastifyServerOptions][FastifyServerOptions]): [FastifyInstance][FastifyInstance]
 
 [src](https://github.com/fastify/fastify/blob/main/fastify.d.ts#L19)
 
@@ -906,7 +906,7 @@ server.get("/", async (request, reply) => {
 
 ---
 
-##### fastify.FastifyServerOptions<[RawServer][rawservergeneric], [Logger][loggergeneric]>
+##### fastify.FastifyServerOptions<[RawServer][RawServerGeneric], [Logger][LoggerGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/fastify.d.ts#L29)
 
@@ -914,7 +914,7 @@ Fastify 서버의 인스턴스화에 사용되는 속성의 인터페이스입�
 
 타입스크립트를 사용하여 Fastify 서버를 인스턴스화하는 예제를 확인하려면 메인 [fastify][fastify] 메서드 타입 정의 섹션을 확인하세요.
 
-##### fastify.FastifyInstance<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RequestGeneric][fastifyrequestgenericinterface], [Logger][loggergeneric]>
+##### fastify.FastifyInstance<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RequestGeneric][FastifyRequestGenericInterface], [Logger][LoggerGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/instance.d.ts#L16)
 
@@ -928,7 +928,7 @@ Fastify 서버 객체를 나타내는 인터페이스입니다. 이는 [`fastify
 
 #### 요청
 
-##### fastify.FastifyRequest<[RequestGeneric][fastifyrequestgenericinterface], [RawServer][rawservergeneric], [RawRequest][rawrequestgeneric]>
+##### fastify.FastifyRequest<[RequestGeneric][FastifyRequestGenericInterface], [RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/request.d.ts#L15)
 
@@ -997,13 +997,13 @@ server.get<requestGeneric>("/", async (request, reply) => {
 
 이 인터페이스를 사용하는 자세한 예제를 보면 예제로 배우기 섹션의 [JSON 스키마](#jsonschema)를 확인하세요.
 
-##### fastify.RawRequestDefaultExpression\<[RawServer][rawservergeneric]\>
+##### fastify.RawRequestDefaultExpression\<[RawServer][RawServerGeneric]\>
 
 [src](https://github.com/fastify/fastify/blob/main/types/utils.d.ts#L23)
 
 `@types/node` 모듈의 `http`, `https`, `http2`에 의존합니다.
 
-제네릭 파라미터 `RawServer`의 기본값은 [`RawServerDefault`][rawserverdefault]입니다.
+제네릭 파라미터 `RawServer`의 기본값은 [`RawServerDefault`][RawServerDefault]입니다.
 
 `RawServer`의 타입이 `http.Server` 또는 `https.Server`라면, 이 표현은 `http.IncomingMessage`를 리턴합니다. 다른 경우에는 `http2.Http2ServerRequest`를 리턴합니다.
 
@@ -1020,7 +1020,7 @@ RawRequestDefaultExpression<http2.Http2Server> // -> http2.Http2ServerRequest
 
 #### 응답
 
-##### fastify.FastifyReply<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>
+##### fastify.FastifyReply<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/reply.d.ts#L32)
 
@@ -1028,7 +1028,7 @@ RawRequestDefaultExpression<http2.Http2Server> // -> http2.Http2ServerRequest
 
 FastifyReply 객체에 커스텀 속성을 추가해야 하는 경우(예: `decorateReply` 메서드를 사용할 때) 이 인터페이스에서 선언 병합을 사용해야 합니다.
 
-[`FastifyReply`][fastifyreply] 섹션에 기본 예제가 제공됩니다. 더 자세한 예제는 예제로 배우기 섹션의 [플러그인](#plugins)을 확인하세요.
+[`FastifyReply`][FastifyReply] 섹션에 기본 예제가 제공됩니다. 더 자세한 예제는 예제로 배우기 섹션의 [플러그인](#plugins)을 확인하세요.
 
 ###### 예시
 
@@ -1053,13 +1053,13 @@ declare module "fastify" {
 }
 ```
 
-##### fastify.RawReplyDefaultExpression<[RawServer][rawservergeneric]>
+##### fastify.RawReplyDefaultExpression<[RawServer][RawServerGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/utils.d.ts#L27)
 
 `@types/node` 모듈의 `http`, `https`, `http2`에 의존합니다.
 
-제네릭 파라미터 `RawServer`의 기본값은 [`RawServerDefault`][rawserverdefault]입니다.
+제네릭 파라미터 `RawServer`의 기본값은 [`RawServerDefault`][RawServerDefault]입니다.
 
 `RawServer`의 타입이 `http.Server` 또는 `https.Server`라면, 이 표현은 `http.ServerResponse`를 리턴합니다. 다른 경우에는 `http2.Http2ServerResponse`를 리턴합니다.
 
@@ -1076,51 +1076,51 @@ RawReplyDefaultExpression<http2.Http2Server> // -> http2.Http2ServerResponse
 
 #### 플러그인
 
-Fastify를 사용하면 플러그인으로 기능을 확장할 수 있습니다. 플러그인은 경로의 집합, 서버 데코레이터 또는 무엇이든 될 수 있습니다. 플러그인을 활성화하려면 [`fastify.register()`][fastifyregister] 메서드를 사용하세요.
+Fastify를 사용하면 플러그인으로 기능을 확장할 수 있습니다. 플러그인은 경로의 집합, 서버 데코레이터 또는 무엇이든 될 수 있습니다. 플러그인을 활성화하려면 [`fastify.register()`][FastifyRegister] 메서드를 사용하세요.
 
 Fastify용 플러그인을 생성할 때 `fastify-plugin` 모듈을 사용하는 것이 좋습니다. 또한, 예제로 배우기의 [플러그인](#plugins) 섹션에 TypeScript와 Fastify를 사용하여 플러그인을 만드는 방법에 대한 가이드가 있습니다.
 
-##### fastify.FastifyPluginCallback<[Options][fastifypluginoptions]>
+##### fastify.FastifyPluginCallback<[Options][FastifyPluginOptions]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/plugin.d.ts#L9)
 
-[`fastify.register()`][fastifyregister] 메서드 내에서 사용되는 인터페이스 메서드 정의입니다.
+[`fastify.register()`][FastifyRegister] 메서드 내에서 사용되는 인터페이스 메서드 정의입니다.
 
-##### fastify.FastifyPluginAsync<[Options][fastifypluginoptions]>
+##### fastify.FastifyPluginAsync<[Options][FastifyPluginOptions]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/plugin.d.ts#L20)
 
-[`fastify.register()`][fastifyregister] 메서드 내에서 사용되는 인터페이스 메서드 정의입니다.
+[`fastify.register()`][FastifyRegister] 메서드 내에서 사용되는 인터페이스 메서드 정의입니다.
 
-##### fastify.FastifyPlugin<[Options][fastifypluginoptions]>
+##### fastify.FastifyPlugin<[Options][FastifyPluginOptions]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/plugin.d.ts#L29)
 
-[`fastify.register()`][fastifyregister] 메서드 내에서 사용되는 인터페이스 메서드 정의입니다. 이 문서는 더 이상 사용되지 않으므로 `FastifyPluginCallback`과 `FastifyPluginAsync`을 사용하도록 합니다. 일반적인 `FastifyPlugin`이 비동기 함수의 타입을 적절히 추론하지 못하기 때문입니다.
+[`fastify.register()`][FastifyRegister] 메서드 내에서 사용되는 인터페이스 메서드 정의입니다. 이 문서는 더 이상 사용되지 않으므로 `FastifyPluginCallback`과 `FastifyPluginAsync`을 사용하도록 합니다. 일반적인 `FastifyPlugin`이 비동기 함수의 타입을 적절히 추론하지 못하기 때문입니다.
 
 ##### fastify.FastifyPluginOptions
 
 [src](https://github.com/fastify/fastify/blob/main/types/plugin.d.ts#L31)
 
-[`fastify.register()`][fastifyregister]의 `options` 매개변수를 객체로 제한하는 데 사용되는 느슨하게 타입된 객체입니다. 플러그인을 생성할 때 옵션을 이 인터페이스의 확장으로 정의하여 등록 메서드에 전달할 수 있도록 합니다.
+[`fastify.register()`][FastifyRegister]의 `options` 매개변수를 객체로 제한하는 데 사용되는 느슨하게 타입된 객체입니다. 플러그인을 생성할 때 옵션을 이 인터페이스의 확장으로 정의하여 등록 메서드에 전달할 수 있도록 합니다.
 
 ---
 
 #### 등록하다
 
-##### fastify.FastifyRegister(플러그인: [FastifyPluginCallback][fastifyplugincallback], 옵션: [FastifyRegisterOptions][fastifyregisteroptions])
+##### fastify.FastifyRegister(플러그인: [FastifyPluginCallback][FastifyPluginCallback], 옵션: [FastifyRegisterOptions][FastifyRegisterOptions])
 
 [src](https://github.com/fastify/fastify/blob/main/types/register.d.ts#L9)
 
-##### fastify.FastifyRegister(플러그인: [FastifyPluginAsync][fastifypluginasync], 옵션: [FastifyRegisterOptions][fastifyregisteroptions])
+##### fastify.FastifyRegister(플러그인: [FastifyPluginAsync][FastifyPluginAsync], 옵션: [FastifyRegisterOptions][FastifyRegisterOptions])
 
 [src](https://github.com/fastify/fastify/blob/main/types/register.d.ts#L9)
 
-##### fastify.FastifyRegister(플러그인: [FastifyPlugin][fastifyplugin], 옵션: [FastifyRegisterOptions][fastifyregisteroptions])
+##### fastify.FastifyRegister(플러그인: [FastifyPlugin][FastifyPlugin], 옵션: [FastifyRegisterOptions][FastifyRegisterOptions])
 
 [src](https://github.com/fastify/fastify/blob/main/types/register.d.ts#L9)
 
-이 타입 인터페이스는 [`fastify.register()`](./Server.md#register) 메서드의 타입을 지정합니다. 타입 인터페이스는 기본 제네릭 `Options`가 있는 함수 시그니처를 반환하며 기본값은 [FastifyPluginOptions][fastifypluginoptions]입니다. 그 함수를 호출할 때 FastifyPlugin 매개변수에서 이 제네릭을 유추하므로 기본 제네릭을 지정할 필요가 없습니다. options 매개변수는 플러그인의 옵션과 두 개의 추가 선택적 속성인 `prefix: string`과 `logLevel`: [LogLevel][loglevel]의 교차점입니다.
+이 타입 인터페이스는 [`fastify.register()`](./Server.md#register) 메서드의 타입을 지정합니다. 타입 인터페이스는 기본 제네릭 `Options`가 있는 함수 시그니처를 반환하며 기본값은 [FastifyPluginOptions][FastifyPluginOptions]입니다. 그 함수를 호출할 때 FastifyPlugin 매개변수에서 이 제네릭을 유추하므로 기본 제네릭을 지정할 필요가 없습니다. options 매개변수는 플러그인의 옵션과 두 개의 추가 선택적 속성인 `prefix: string`과 `logLevel`: [LogLevel][LogLevel]의 교차점입니다.
 
 다음은 작동 중인 옵션 추론의 예입니다.
 
@@ -1142,7 +1142,7 @@ Fastify에서 TypeScript 플러그인을 생성하는 더 자세한 예제는 �
 
 [src](https://github.com/fastify/fastify/blob/main/types/register.d.ts#L16)
 
-이 타입은 `Options` 제네릭과 내보내기 되지 않은 `RegisterOptions` 인터페이스의 교차점입니다. `RegisterOptions`는 두 가지 선택적 속성 `prefix: string`과 `logLevel`: [LogLevel][loglevel]을 지정하는 인터페이스입니다. 이 타입은 앞서 설명한 교차점을 반환하는 함수로 지정될 수도 있습니다.
+이 타입은 `Options` 제네릭과 내보내기 되지 않은 `RegisterOptions` 인터페이스의 교차점입니다. `RegisterOptions`는 두 가지 선택적 속성 `prefix: string`과 `logLevel`: [LogLevel][LogLevel]을 지정하는 인터페이스입니다. 이 타입은 앞서 설명한 교차점을 반환하는 함수로 지정될 수도 있습니다.
 
 ---
 
@@ -1150,7 +1150,7 @@ Fastify에서 TypeScript 플러그인을 생성하는 더 자세한 예제는 �
 
 커스텀 로거에 지정에 대한 자세한 예제는 [로거 타입 지정하기](#example-5-specifying-logger-types)를 확인하세요.
 
-##### fastify.FastifyLoggerOptions<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric]>
+##### fastify.FastifyLoggerOptions<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/logger.d.ts#L17)
 
@@ -1188,35 +1188,35 @@ Fastify가 로그 메서드를 호출하는 두 가지 방법을 구현하는 �
 
 라우팅은 Fastify의 핵심 원칙 중 하나입니다. 이 섹션에 정의된 대부분의 타입은 Fasitfy 인스턴스 `.route`와 `.get/.post/.etc` 메서드에서 내부적으로 사용됩니다.
 
-##### fastify.RouteHandlerMethod<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>
+##### fastify.RouteHandlerMethod<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/route.d.ts#L105)
 
 라우트 핸들러 메서드에 대한 타입 선언입니다. 두 개의 인수 `request`와 `reply`를 가지는데, 각각 `FastifyRequest`와 `FastifyReply`에 의해 타입이 결정됩니다. 제네릭 파라미터는 이 인수에 전달됩니다. 이 메서드는 동기와 비동기 핸들러에 각각 `void` 또는 `Promise<any>`를 반환합니다.
 
-##### fastify.RouteOptions<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>
+##### fastify.RouteOptions<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/route.d.ts#L78)
 
 RouteShorthandOptions를 확장하고 다음 세 가지 필수 속성을 추가하는 인터페이스입니다.
 
-1. `method`: 단일 [HTTP메서드][httpmethods] 또는 [HTTPMethods][httpmethods] 목록
+1. `method`: 단일 [HTTP메서드][HTTPMethods] 또는 [HTTPMethods][HTTPMethods] 목록
 2. `url` 경로에 대한 문자열
-3. `handler` 경로 핸들러 메서드, 자세한 내용은 [RouteHandlerMethod][fastify.RouteHandlerMethod]를 참조
+3. `handler` 경로 핸들러 메서드, 자세한 내용은 [RouteHandlerMethod][]를 참조
 
-##### fastify.RouteShorthandMethod<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric]>
+##### fastify.RouteShorthandMethod<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/route.d.ts#12)
 
 `.get/.post/.etc` 메서드와 함께 사용할 세 종류의 약식 경로 메서드를 위한 오버로드된 함수 인터페이스입니다.
 
-##### fastify.RouteShorthandOptions<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>
+##### fastify.RouteShorthandOptions<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/route.d.ts#55)
 
 경로에 대한 모든 기본 옵션을 다루는 인터페이스입니다. 이 인터페이스의 각 속성은 선택 사항이며 RouteOptions와 RouteShorthandOptionsWithHandler 인터페이스의 기본 역할을 합니다.
 
-##### fastify.RouteShorthandOptionsWithHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>
+##### fastify.RouteShorthandOptionsWithHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/route.d.ts#93)
 
@@ -1230,23 +1230,23 @@ RouteShorthandOptions를 확장하고 다음 세 가지 필수 속성을 추가�
 
 `string` 또는 `Buffer`인 제네릭 타입입니다.
 
-##### fastify.FastifyBodyParser<[RawBody][rawbodygeneric], [RawServer][rawservergeneric], [RawRequest][rawrequestgeneric]>
+##### fastify.FastifyBodyParser<[RawBody][RawBodyGeneric], [RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/content-type-parser.d.ts#L7)
 
 바디 파서 메서드를 지정하기 위한 함수 타입의 정의입니다. `RawBody` 제네릭을 사용하여 파싱되는 바디의 타입을 지정합니다.
 
-##### fastify.FastifyContentTypeParser<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric]>
+##### fastify.FastifyContentTypeParser<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric]>
  
 [src](https://github.com/fastify/fastify/blob/main/types/content-type-parser.d.ts#L17)
 
 바디 파서 메서드를 지정하기 위한 함수 타입의 정의입니다. `RawRequest` 제네릭을 통해 Content의 타입을 지정합니다.
 
-##### fastify.AddContentTypeParser<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric]>
+##### fastify.AddContentTypeParser<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric]>
 
 [src](https://github.com/fastify/fastify/blob/main/types/content-type-parser.d.ts#L46)
 
-`addContentTypeParser` 메서드에 대한 오버로드된 인터페이스 함수 정의입니다. `parseAs`가 `opts` 파라미터에 전달되면, `parser` 파라미터에 대해 [FastifyBodyParser][#####fastify.FastifyBodyParser]를 사용합니다. 그렇지 않으면, [FastifyContentTypeParser][##### fastify.FastifyContentTypeParser]를 사용합니다.
+`addContentTypeParser` 메서드에 대한 오버로드된 인터페이스 함수 정의입니다. `parseAs`가 `opts` 파라미터에 전달되면, `parser` 파라미터에 대해 [FastifyBodyParser][]를 사용합니다. 그렇지 않으면, [FastifyContentTypeParser][]를 사용합니다.
 
 ##### fastify.hasContentTypeParser
 
@@ -1277,7 +1277,7 @@ Node.js의 `Error` 타입을 확장하며, 두 개의 선택적인 속성인 `st
 
 #### 훅
 
-##### fastify.onRequestHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], done: (err?: [FastifyError][fastifyerror]) => void): Promise\<unknown\> | void
+##### fastify.onRequestHookHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>(request: [FastifyRequest][FastifyRequest], reply: [FastifyReply][FastifyReply], done: (err?: [FastifyError][FastifyError]) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L17)
 
@@ -1285,7 +1285,7 @@ Node.js의 `Error` 타입을 확장하며, 두 개의 선택적인 속성인 `st
 
 주의: `onRequest` 훅에서, `request.body`는 항상 null입니다. 바디 파싱이 `preHandler` 훅 보다 먼저 일어나기 때문입니다.
 
-##### fastify.preParsingHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], done: (err?: [FastifyError][fastifyerror]) => void): Promise\<unknown\> | void
+##### fastify.preParsingHookHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>(request: [FastifyRequest][FastifyRequest], reply: [FastifyReply][FastifyReply], done: (err?: [FastifyError][FastifyError]) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L35)
 
@@ -1295,19 +1295,19 @@ Node.js의 `Error` 타입을 확장하며, 두 개의 선택적인 속성인 `st
 
 주의: 반환된 스트림에도 `receivedEncodedLength` 속성을 추가해야 합니다. 이 속성은 요청 페이로드를 `Content-Length` 헤더 값과 정확히 매칭하는 데 사용됩니다. 이상적으로 이 속성은 수신된 각 청크마다 업데이트되어야 합니다.
 
-##### fastify.preValidationHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], done: (err?: [FastifyError][fastifyerror]) => void): Promise\<unknown\> | void
+##### fastify.preValidationHookHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>(request: [FastifyRequest][FastifyRequest], reply: [FastifyReply][FastifyReply], done: (err?: [FastifyError][FastifyError]) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L53)
 
 `preValidation`은 요청 라이프사이클에서 실행되는 세 번째 훅입니다. 이전 훅은 `preParsing`이고, 다음 훅은 `preHandler`입니다.
 
-##### fastify.preHandlerHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], done: (err?: [FastifyError][fastifyerror]) => void): Promise\<unknown\> | void
+##### fastify.preHandlerHookHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>(request: [FastifyRequest][FastifyRequest], reply: [FastifyReply][FastifyReply], done: (err?: [FastifyError][FastifyError]) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L70)
 
 `preHandler`는 요청 라이프사이클에서 실행되는 네 번째 훅입니다. 이전 훅은 `preValidation`이고, 다음 훅은 `preSerialization`입니다.
 
-##### fastify.preSerializationHookHandler<PreSerializationPayload, [RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], payload: PreSerializationPayload, done: (err: [FastifyError][fastifyerror] | null, res?: unknown) => void): Promise\<unknown\> | void
+##### fastify.preSerializationHookHandler<PreSerializationPayload, [RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>(request: [FastifyRequest][FastifyRequest], reply: [FastifyReply][FastifyReply], payload: PreSerializationPayload, done: (err: [FastifyError][FastifyError] | null, res?: unknown) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L94)
 
@@ -1315,7 +1315,7 @@ Node.js의 `Error` 타입을 확장하며, 두 개의 선택적인 속성인 `st
 
 주의: 페이로드가 문자열, 버퍼, 스트림 또는 null이면 훅이 호출되지 **않습니다**.
 
-##### fastify.onSendHookHandler<OnSendPayload, [RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], payload: OnSendPayload, done: (err: [FastifyError][fastifyerror] | null, res?: unknown) => void): Promise\<unknown\> | void
+##### fastify.onSendHookHandler<OnSendPayload, [RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>(request: [FastifyRequest][FastifyRequest], reply: [FastifyReply][FastifyReply], payload: OnSendPayload, done: (err: [FastifyError][FastifyError] | null, res?: unknown) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L114)
 
@@ -1323,7 +1323,7 @@ Node.js의 `Error` 타입을 확장하며, 두 개의 선택적인 속성인 `st
 
 주의: 페이로드를 변경하려면 문자열, 버퍼, 스트림 또는 null로만 변경할 수 있습니다.
 
-##### fastify.onResponseHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], done: (err?: [FastifyError][fastifyerror]) => void): Promise\<unknown\> | void
+##### fastify.onResponseHookHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>(request: [FastifyRequest][FastifyRequest], reply: [FastifyReply][FastifyReply], done: (err?: [FastifyError][FastifyError]) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L134)
 
@@ -1331,7 +1331,7 @@ Node.js의 `Error` 타입을 확장하며, 두 개의 선택적인 속성인 `st
 
 onResponse 훅은 응답이 전송되었을 때 실행되므로 클라이언트에 더 많은 데이터를 보낼 수는 없습니다. 그러나 예를 들어, 통계를 수집하기 위해서 데이터를 외부 서비스로 보내는 데 유용할 수 있습니다. 
 
-##### fastify.onErrorHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], error: [FastifyError][fastifyerror], done: () => void): Promise\<unknown\> | void
+##### fastify.onErrorHookHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>(request: [FastifyRequest][FastifyRequest], reply: [FastifyReply][FastifyReply], error: [FastifyError][FastifyError], done: () => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L154)
 
@@ -1343,13 +1343,13 @@ onResponse 훅은 응답이 전송되었을 때 실행되므로 클라이언트�
 
 주의: 다른 훅과 달리, `done` 함수에 에러를 전달하는 것은 지원되지 않습니다.
 
-##### fastify.onRouteHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(opts: [RouteOptions][routeoptions] & { path: string; prefix: string }): Promise\<unknown\> | void
+##### fastify.onRouteHookHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [RequestGeneric][FastifyRequestGenericInterface], [ContextConfig][ContextConfigGeneric]>(opts: [RouteOptions][RouteOptions] & { path: string; prefix: string }): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L174)
 
 새 라우트가 등록되면 트리거됩니다. 리스너에는 routeOptions 객체가 유일한 파라미터로 전달됩니다. 인터페이스는 동기식이므로 리스너는 콜백을 전달받지 않습니다.
 
-##### fastify.onRegisterHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [Logger][loggergeneric]>(instance: [FastifyInstance][fastifyinstance], done: (err?: [FastifyError][fastifyerror]) => void): Promise\<unknown\> | void
+##### fastify.onRegisterHookHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [Logger][LoggerGeneric]>(instance: [FastifyInstance][FastifyInstance], done: (err?: [FastifyError][FastifyError]) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L191)
 
@@ -1359,7 +1359,7 @@ onResponse 훅은 응답이 전송되었을 때 실행되므로 클라이언트�
 
 주의: 플러그인이 fastify-plugin 내부에 래핑된 경우 이 훅이 호출되지 않습니다.
 
-##### fastify.onCloseHookHandler<[RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [Logger][loggergeneric]>(instance: [FastifyInstance][fastifyinstance], done: (err?: [FastifyError][fastifyerror]) => void): Promise\<unknown\> | void
+##### fastify.onCloseHookHandler<[RawServer][RawServerGeneric], [RawRequest][RawRequestGeneric], [RawReply][RawReplyGeneric], [Logger][LoggerGeneric]>(instance: [FastifyInstance][FastifyInstance], done: (err?: [FastifyError][FastifyError]) => void): Promise\<unknown\> | void
 
 [src](https://github.com/fastify/fastify/blob/main/types/hooks.d.ts#L206)
 
@@ -1367,30 +1367,34 @@ onResponse 훅은 응답이 전송되었을 때 실행되므로 클라이언트�
 
 <!-- Links -->
 
-[fastify]: #fastifyrawserver-rawrequest-rawreply-loggeropts-fastifyserveroptions-fastifyinstance
-[rawservergeneric]: #rawserver
-[rawrequestgeneric]: #rawrequest
-[rawreplygeneric]: #rawreply
-[loggergeneric]: #logger
-[rawbodygeneric]: #rawbody
-[httpmethods]: #fastifyhttpmethods
-[rawserverbase]: #fastifyrawserverbase
-[rawserverdefault]: #fastifyrawserverdefault
-[fastifyrequest]: #fastifyfastifyrequestrawserver-rawrequest-requestgeneric
-[fastifyrequestgenericinterface]: #fastifyrequestgenericinterface
-[rawrequestdefaultexpression]: #fastifyrawrequestdefaultexpressionrawserver
-[fastifyreply]: #fastifyfastifyreplyrawserver-rawreply-contextconfig
-[rawreplydefaultexpression]: #fastifyrawreplydefaultexpression
-[fastifyserveroptions]: #fastifyfastifyserveroptions-rawserver-logger
-[fastifyinstance]: #fastifyfastifyinstance
-[fastifyloggeroptions]: #fastifyfastifyloggeroptions
-[contextconfiggeneric]: #ContextConfigGeneric
-[fastifyplugin]: #fastifyfastifypluginoptions-rawserver-rawrequest-requestgeneric
-[fastifyplugincallback]: #fastifyfastifyplugincallbackoptions
-[fastifypluginasync]: #fastifyfastifypluginasyncoptions
-[fastifypluginoptions]: #fastifyfastifypluginoptions
-[fastifyregister]: #fastifyfastifyregisterrawserver-rawrequest-requestgenericplugin-fastifyplugin-opts-fastifyregisteroptions
-[fastifyregisteroptions]: #fastifyfastifytregisteroptions
-[loglevel]: #fastifyloglevel
-[fastifyerror]: #fastifyfastifyerror
-[routeoptions]: #fastifyrouteoptionsrawserver-rawrequest-rawreply-requestgeneric-contextconfig
+[Fastify]:
+    #fastifyrawserver-rawrequest-rawreply-loggeropts-fastifyserveroptions-fastifyinstance
+[RawServerGeneric]: #rawserver
+[RawRequestGeneric]: #rawrequest
+[RawReplyGeneric]: #rawreply
+[LoggerGeneric]: #logger
+[RawBodyGeneric]: #rawbody
+[HTTPMethods]: #fastifyhttpmethods
+[RawServerBase]: #fastifyrawserverbase
+[RawServerDefault]: #fastifyrawserverdefault
+[FastifyRequest]: #fastifyfastifyrequestrawserver-rawrequest-requestgeneric
+[FastifyRequestGenericInterface]: #fastifyrequestgenericinterface
+[RawRequestDefaultExpression]: #fastifyrawrequestdefaultexpressionrawserver
+[FastifyReply]: #fastifyfastifyreplyrawserver-rawreply-contextconfig
+[RawReplyDefaultExpression]: #fastifyrawreplydefaultexpression
+[FastifyServerOptions]: #fastifyfastifyserveroptions-rawserver-logger
+[FastifyInstance]: #fastifyfastifyinstance
+[FastifyLoggerOptions]: #fastifyfastifyloggeroptions
+[ContextConfigGeneric]: #ContextConfigGeneric
+[FastifyPlugin]:
+    #fastifyfastifypluginoptions-rawserver-rawrequest-requestgeneric
+[FastifyPluginCallback]: #fastifyfastifyplugincallbackoptions
+[FastifyPluginAsync]: #fastifyfastifypluginasyncoptions
+[FastifyPluginOptions]: #fastifyfastifypluginoptions
+[FastifyRegister]:
+    #fastifyfastifyregisterrawserver-rawrequest-requestgenericplugin-fastifyplugin-opts-fastifyregisteroptions
+[FastifyRegisterOptions]: #fastifyfastifytregisteroptions
+[LogLevel]: #fastifyloglevel
+[FastifyError]: #fastifyfastifyerror
+[RouteOptions]:
+    #fastifyrouteoptionsrawserver-rawrequest-rawreply-requestgeneric-contextconfig
