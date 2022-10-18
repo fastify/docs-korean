@@ -1313,7 +1313,7 @@ Node.js의 `Error` 타입을 확장하며, 두 개의 선택적인 속성인 `st
 
 `preSerialization`은 요청 라이프사이클에서 실행되는 다섯 번째 훅입니다. 이전 훅은 `preHandler`이고, 다음 훅은 `onSend`입니다.
 
-주의: 페이로드가 문자열, 버퍼, 스트림 또는 null이면 훅이 호출되지 않습니다.
+주의: 페이로드가 문자열, 버퍼, 스트림 또는 null이면 훅이 호출되지 **않습니다**.
 
 ##### fastify.onSendHookHandler<OnSendPayload, [RawServer][rawservergeneric], [RawRequest][rawrequestgeneric], [RawReply][rawreplygeneric], [RequestGeneric][fastifyrequestgenericinterface], [ContextConfig][contextconfiggeneric]>(request: [FastifyRequest][fastifyrequest], reply: [FastifyReply][fastifyreply], payload: OnSendPayload, done: (err: [FastifyError][fastifyerror] | null, res?: unknown) => void): Promise\<unknown\> | void
 
