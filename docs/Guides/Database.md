@@ -2,24 +2,21 @@
 
 ## Database
 
-Fastify's ecosystem provides a handful of 
-plugins for connecting to various database engines. 
-This guide covers engines that have Fastify 
-plugins maintained within the Fastify organization.
+Fastify는 여러 데이터베이스 엔진 연결을 위한 플러그인을 제공합니다. 해당 가이드에서는 Fastify에서 공식적으로 제공되는 플러그인들에 대해 다룹니다.
 
-> If a plugin for your database of choice does not exist 
-> you can still use the database as Fastify is database agnostic. 
-> By following the examples of the database plugins listed in this guide, 
-> a plugin can be written for the missing database engine. 
+> 사용하려는 데이터베이스에 맞는 플러그인이 없다 하더라도
+> Fastify는 유연하고 확장가능하기에 그대로 사용하는건 얼마든지 가능합니다.
+> 본 문서에 제시된 데이터베이스 플러그인들의 예시들과 같이 비슷하게,
+> 이외에 존재하는 데이터베이스에 대해서도 얼마든지 적용가능합니다.
 
-> If you would like to write your own Fastify plugin 
-> please take a look at the [plugins guide](./Plugins-Guide.md)
+> 만약 Fastify 플러그인을 직접 작성하고 싶다면
+> [plugins guide](./Plugins-Guide.md)을 참조해보세요
 
 ### [MySQL](https://github.com/fastify/fastify-mysql)
 
-Install the plugin by running `npm i @fastify/mysql`.
+다음 명령어로 플러그인을 설치합니다 `npm i @fastify/mysql`.
 
-*Usage:*
+*예시:*
 
 ```javascript
 const fastify = require('fastify')()
@@ -44,9 +41,9 @@ fastify.listen({ port: 3000 }, err => {
 ```
 
 ### [Postgres](https://github.com/fastify/fastify-postgres)
-Install the plugin by running `npm i pg @fastify/postgres`.
+다음 명령어로 플러그인을 설치합니다 `npm i pg @fastify/postgres`.
 
-*Example*:
+*예시*:
 
 ```javascript
 const fastify = require('fastify')()
@@ -71,9 +68,9 @@ fastify.listen({ port: 3000 }, err => {
 ```
 
 ### [Redis](https://github.com/fastify/fastify-redis)
-Install the plugin by running `npm i @fastify/redis`
+다음 명령어로 플러그인을 설치합니다 `npm i @fastify/redis`
 
-*Usage:*
+*예시:*
 
 ```javascript
 'use strict'
@@ -104,9 +101,8 @@ fastify.listen({ port: 3000 }, err => {
 })
 ```
 
-By default `@fastify/redis` doesn't close 
-the client connection when Fastify server shuts down. 
-To opt-in to this behavior, register the client like so:
+`@fastify/redis` 클라이언트는 Fastify 서버가 닫혀도 자동으로 끝나지 않습니다.
+따라서 자동으로 닫히게 반영하기 위해서는 다음과 같이 설정해야 합니다.
 
 ```javascript
 fastify.register(require('@fastify/redis'), {
@@ -116,7 +112,7 @@ fastify.register(require('@fastify/redis'), {
 ```
 
 ### [Mongo](https://github.com/fastify/fastify-mongodb)
-Install the plugin by running `npm i @fastify/mongodb`
+다음 명령어로 플러그인을 설치합니다 `npm i @fastify/mongodb`
 
 *Usage:*
 ```javascript
@@ -131,7 +127,7 @@ fastify.register(require('@fastify/mongodb'), {
 })
 
 fastify.get('/user/:id', function (req, reply) {
-  // Or this.mongo.client.db('mydb').collection('users')
+    // 또는\ this.mongo.client.db('mydb').collection('users')
   const users = this.mongo.db.collection('users')
 
   // if the id is an ObjectId format, you need to create a new ObjectId
@@ -151,7 +147,7 @@ fastify.listen({ port: 3000 }, err => {
 ```
 
 ### [LevelDB](https://github.com/fastify/fastify-leveldb)
-Install the plugin by running `npm i @fastify/leveldb`
+다음 명령어로 플러그인을 설치합니다 `npm i @fastify/leveldb`
 
 *Usage:*
 ```javascript
@@ -178,10 +174,9 @@ fastify.listen({ port: 3000 }, err => {
 })
 ```
 
-### Writing plugin for a database library
-We could write a plugin for a database 
-library too (e.g. Knex, Prisma, or TypeORM). 
-We will use [Knex](https://knexjs.org/) in our example.
+### 데이터베이스 라이브러리 플러그인 만들기
+이외에도 다른 데이터베이스 라이브러리를 사용하는 것도 가능합니다. (e.g. Knex, Prisma, or TypeORM)
+이번 예시에서는 [Knex](https://knexjs.org/)를 사용해보겠습니다.
 
 ```javascript
 'use strict'
@@ -207,10 +202,10 @@ function knexPlugin(fastify, options, done) {
 export default fp(knexPlugin, { name: 'fastify-knex-example' })
 ```
 
-### Writing a plugin for a database engine
+### 데이터베이스 엔진 플러그인 만들기
 
-In this example, we will create a basic Fastify MySQL plugin from scratch (it is
-a stripped-down example, please use the official plugin in production).
+이번 예제에서는 기본적인 MySQL 플러그인을 처음부터 만들어봅니다. (이는
+이해를 돕기위한 예제이므로, 프로덕션 환경에서는 공식 플러그인을 사용해주세요.)
 
 ```javascript
 const fp = require('fastify-plugin')
@@ -231,35 +226,29 @@ function fastifyMysql(fastify, options, done) {
 export default fp(fastifyMysql, { name: 'fastify-mysql-example' })
 ```
 
-### Migrations
+### 마이그레이션
 
-Database schema migrations are an integral part of database management and
-development. Migrations provide a repeatable and testable way to modify a
-database's schema and prevent data loss.
+데이터베이스 스키마 마이그레이션은 데이터베이스 관리 및 개발의 필수입니다.
+마이그레이션은 반복적이고 테스트 가능한 방식으로 데이터베이스 스키마를 관리하고 데이터 손실을 방지해야합니다.
 
-As stated at the beginning of the guide, Fastify is database agnostic and any
-NodeJS database migration tool can be used with it. We will give an example of
-using [Postgrator](https://www.npmjs.com/package/postgrator) which has support
-for Postgres, MySQL, SQL Server and SQLite. For MongoDB migrations, please check
-[migrate-mongo](https://www.npmjs.com/package/migrate-mongo).
+본 가이드의 시작부분에서 설명했듯이, Fastify는 데이터베이스 형식에 얽매이지 않으며 어떤 NodeJS 데이터베이스 마이그레이션 툴이든 적용 가능합니다.
+Postgres, MySQL, SQLServer 그리고 SQLite를 지원하는 [Postgrator](https://www.npmjs.com/package/postgrator)의 예시를 따라해봅니다.
+MongoDB 마이그레이션의 경우 [migrate-mongo](https://www.npmjs.com/package/migrate-mongo)를 참조하세요.
 
 #### [Postgrator](https://www.npmjs.com/package/postgrator)
 
-Postgrator is NodeJS SQL migration tool that uses a directory of SQL scripts to
-alter the database schema. Each file an migrations folder need to follow the
-pattern: ` [version].[action].[optional-description].sql`.
+Postgrator는 SQL 스크립트로 데이터베이스 스키마를 변경하는 NodeJS SQL 마이그레이션 도구입니다.
+마이그레이션 폴더내에 각 SQL 파일명은 다음과 같은 패턴으로 작성되어야 합니다: : ` [version].[action].[optional-description].sql`.
 
-**version:** must be an incrementing number (e.g. `001` or a timestamp).
+**version:** 순차적으로 증가하는 양수 값이어야 합니다. (e.g. `001` 혹은 타입스탬프값).
 
-**action:** should be `do` or `undo`. `do` implements the version, `undo`
-reverts it. Think about it like `up` and `down` in other migration tools.
+**action:** 반드시 `do` 혹은 `undo`여야 합니다. `do` 는 버전을 올리며, `undo`
+는 반대로 작업을 되돌리는 것을 의미합니다. 통상적으로 타 마이그레이션 도구에서 사용되는 `up` 및 `down` 과 같은 의미입니다.
 
-**optional-description** describes which changes migration makes. Although
-optional, it should be used for all migrations as it makes it easier for
-everyone to know which changes are made in a migration.
+**optional-description** 마이그레이션에 따른 변경사항을 기술합니다.
+선택사항이지만, 해당 마이그레이션의 변경사항이 어떤 것인지 쉽게 알아볼 수 있도록 사용하는 것을 권장합니다.
 
-In our example, we are going to have a single migration that creates a `users`
-table and we are going to use `Postgrator` to run the migration.
+이번 예시에서는 `Postgrator`를 사용해 `users` 테이블을 생성하는 단일 마이그레이션 파일을 만들어 봅니다.
 
 > Run `npm i pg postgrator` to install dependencies needed for the
 > example.
@@ -293,7 +282,7 @@ async function migrate() {
       driver: 'pg',
       database: 'example',
       schemaTable: 'migrations',
-      currentSchema: 'public', // Postgres and MS SQL Server only
+      currentSchema: 'public', // Postgres and MS SQL Server 만 적용됩니다.
       execQuery: (query) => client.query(query),
     });
 
