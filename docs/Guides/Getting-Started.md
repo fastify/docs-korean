@@ -260,8 +260,7 @@ async function dbConnector (fastify, options) {
   })
 }
 
-// Wrapping a plugin function with fastify-plugin exposes the decorators
-// and hooks, declared inside the plugin to the parent scope.
+// fastify 플러그인으로 플러그인 함수를 감싸면, 플러그인 내부의 상위 스코프에 선언된 데코레이터와 훅을 노출합니다.
 module.exports = fastifyPlugin(dbConnector)
 
 ```
@@ -285,8 +284,7 @@ async function dbConnector (fastify, options) {
   })
 }
 
-// Wrapping a plugin function with fastify-plugin exposes the decorators
-// and hooks, declared inside the plugin to the parent scope.
+// fastify 플러그인으로 플러그인 함수를 감싸면, 플러그인 내부의 상위 스코프에 선언된 데코레이터와 훅을 노출합니다.
 module.exports = fastifyPlugin(dbConnector)
 
 ```
