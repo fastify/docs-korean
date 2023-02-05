@@ -52,7 +52,7 @@ fastify.listen({ port: 3000 }, function (err, address) {
 })
 ```
 
-`async/await` 사용을 더 선호 하시나요? Fastify는 당연하게도 이를 지원합니다. <!-- https://web-front-end.tistory.com/84 -->
+`async/await` 사용을 더 선호 하시나요? Fastify는 당연하게도 이를 지원합니다.
 
 ```js
 // ESM
