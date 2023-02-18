@@ -433,7 +433,7 @@ fastify.post('/', opts, async (request, reply) => {
 ### 데이터 직렬화
 <a id="serialize-data"></a>
 
-Fastify는 JSON을 최고 수준으로 지원합니다. 그리고 JSON 본문을 파싱하고 JSON 출력을 직렬화하는데 있어 최적화가 아주 잘 되어있습니다.
+Fastify는 JSON을 최고 수준으로 지원합니다. 그리고 JSON 본문을 파싱하고 JSON 출력을 직렬화하는 데 있어 최적화가 아주 잘 되어있습니다.
 
 JSON 직렬화의 속도를 높이려면 (그렇습니다. 직렬화는 느립니다!) 다음 예제에서 보이는 것처럼 스키마 옵션의 `response` 키를 사용하세요:
 ```js
