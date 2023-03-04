@@ -31,7 +31,7 @@ ex. 제거될(x), 제거할(o)
 자주 등장하는 용어에 관한 번역 사례는 [번역 용어집](https://github.com/fastify/fastify-korean/wiki/%EB%B2%88%EC%97%AD-%EC%9A%A9%EC%96%B4%EC%A7%91)을 참고하세요. 단어 추가를 제안하려면 이슈로 등록해주세요.
 
 ```
-ex. request -> 리퀘스트(o), 요청(o)
+ex. scope -> 스코프(o), 범위(o)
 body -> 바디(o), 본문(o)
 parsing -> 파싱(o), 구문 분석(o)
 ```
