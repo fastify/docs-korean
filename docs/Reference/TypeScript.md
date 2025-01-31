@@ -571,7 +571,7 @@ Fastify의 가장 눈에 띄는 기능 중 하나는 광범위한 플러그인 �
    export default myPlugin;
    ```
 
-**주의**: [fastify-plugin](https://github.com/fastify/fastify-plugin) v2.3.0 이상은 `.default` 속성과 명명된 export를 exported 플러그인에 자동으로 추가합니다. 최고의 개발 경험을 위해 `export default`와 `export const myPlugin`를 입력하는 것을 잊지 마세요. 완전한 예제는 [@fastify/swagger](https://github.com/fastify/fastify-swagger/blob/master/index.d.ts)에서 확인할 수 있습니다.
+**주의**: [fastify-plugin](https://github.com/fastify/fastify-plugin) v2.3.0 이상은 `.default` 속성과 명명된 export를 exported 플러그인에 자동으로 추가합니다. 최고의 개발 경험을 위해 `export default`와 `export const myPlugin`를 입력하는 것을 잊지 마세요. 완전한 예제는 [@fastify/swagger](https://github.com/fastify/fastify-swagger/blob/main/index.d.ts)에서 확인할 수 있습니다.
 
 해당 파일들이 완료되면, 플러그인은 이제 모든 TypeScript 프로젝트에서 사용할 준비가 되었습니다!
 
